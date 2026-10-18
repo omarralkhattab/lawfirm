@@ -1,55 +1,36 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
 
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-  });
-  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Open navigation');
-  }));
-}
+menuToggle?.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+  menuToggle.textContent = isOpen ? "×" : "☰";
+});
 
-document.querySelectorAll('[data-service]').forEach(link => {
-  link.addEventListener('click', () => {
-    const serviceSelect = document.querySelector('#service');
-    if (serviceSelect) serviceSelect.value = link.dataset.service;
+navLinks?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle?.setAttribute("aria-expanded", "false");
+    if (menuToggle) {
+      menuToggle.setAttribute("aria-label", "Open navigation");
+      menuToggle.textContent = "☰";
+    }
   });
 });
 
-const year = document.querySelector('#year');
-if (year) year.textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-const form = document.querySelector('#contact-form');
-const formNote = document.querySelector('#form-note');
-if (form) {
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    const formData = new FormData(form);
-    const name = String(formData.get('name') || '').trim();
-    const email = String(formData.get('email') || '').trim();
-    const service = String(formData.get('service') || 'Other IT task');
-    const message = String(formData.get('message') || '').trim();
-    // Replace this placeholder with your preferred public contact email before publishing.
-    const contactEmail = 'YOUR_EMAIL@example.com';
-    if (contactEmail.includes('YOUR_EMAIL')) {
-      formNote.textContent = 'Before publishing, replace YOUR_EMAIL@example.com in script.js with your contact email. The message is shown below for now.';
-      const draft = `To: [add your contact email]\nSubject: Freelance IT enquiry — ${service}\n\nName: ${name}\nReply email: ${email}\nService: ${service}\n\n${message}`;
-      const existing = document.querySelector('#draft-preview');
-      if (existing) existing.remove();
-      const preview = document.createElement('pre');
-      preview.id = 'draft-preview';
-      preview.className = 'draft-preview';
-      preview.textContent = draft;
-      form.appendChild(preview);
-      return;
-    }
-    const subject = encodeURIComponent(`Freelance IT enquiry — ${service}`);
-    const body = encodeURIComponent(`Name: ${name}\nReply email: ${email}\nService: ${service}\n\n${message}`);
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-  });
-}
+const form = document.getElementById("contactForm");
+form?.addEventListener("submit", event => {
+  event.preventDefault();
+  const data = new FormData(form);
+  const subject = encodeURIComponent(`Consultation request: ${data.get("area")}`);
+  const body = encodeURIComponent(
+    `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone") || "Not provided"}\nArea of inquiry: ${data.get("area")}\n\nMessage:\n${data.get("message")}\n\nPlease note: this is an initial inquiry and does not contain confidential information.`
+  );
+  const recipient = "contact@example.com"; // Replace with the firm's real contact email.
+  document.getElementById("formStatus").textContent =
+    "Your email application should open with a draft. Review it and send it from your email app.";
+  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+});

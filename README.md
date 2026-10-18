@@ -1,41 +1,28 @@
-# Independent IT Services — first website version
+# Law Firm Website — Haddad & Partners
 
-A responsive, static freelance IT services website built with plain HTML, CSS, and JavaScript. No build tools, paid services, or dependencies are required.
+A responsive one-page law firm website built with HTML, CSS, and vanilla JavaScript. No build tools or paid libraries required.
 
 ## Preview locally
+Open `index.html` in a modern browser. Internet access is used for Google Fonts and the remote Unsplash photographs.
 
-1. Extract the ZIP (if using the packaged version).
-2. Open `index.html` in a browser.
+## Publish with GitHub Pages
+1. Extract this ZIP.
+2. In your existing GitHub repository, choose **Add file → Upload files**.
+3. Upload `index.html`, `styles.css`, `script.js`, and `README.md` from this folder to the repository root.
+4. Confirm replacement of existing files and commit the changes.
+5. Keep GitHub Pages configured for branch `main`, folder `/(root)`.
 
-For a local development server, run this from the project folder:
+## Customize before publishing
+Search the files for these placeholders and replace them:
+- `Haddad & Partners` — firm name
+- `contact@example.com` — actual contact email (in both `index.html` and `script.js`)
+- `+962 6 000 0000` — actual phone number
+- `Amman, Jordan` and the office address placeholder — verified location
+- Firm description, practice areas, lawyer biographies, and credentials
 
-```bash
-python -m http.server 8000
-```
-
-Then visit `http://localhost:8000`.
-
-## Before publishing
-
-- Replace `Independent IT Services` with your preferred brand/name.
-- In `script.js`, replace `YOUR_EMAIL@example.com` with a contact email you want clients to use.
-- Update the description and services so they accurately reflect your experience.
-- Do not include employer data, customer information, confidential screenshots, or proprietary scripts in the portfolio.
-- Test the contact form. It opens a pre-filled email draft; it does not send data to a server.
-
-## Free hosting option: GitHub Pages
-
-1. Create a GitHub account if needed.
-2. Create a new public repository, for example `it-services-portfolio`.
-3. Upload `index.html`, `styles.css`, and `script.js` to the repository root (the README can also be included).
-4. Open **Settings → Pages**.
-5. Under the build/deployment section, choose **Deploy from a branch**, select `main` and `/ (root)`, and save.
-6. Wait for GitHub Pages to publish the site. The URL will be shown in the Pages settings.
-
-GitHub's interface may change; use its current Pages instructions if labels differ. You can start with the free default URL and decide about a custom domain later.
-
-## Files
-
-- `index.html` — page content and sections
-- `styles.css` — responsive design and visual styles
-- `script.js` — mobile navigation, service preselection, and contact form behavior
+## Important
+- The practice areas and firm details are illustrative placeholders. Verify them against the firm's actual services and jurisdiction.
+- The contact form opens the visitor's email application; it does not send or store messages itself.
+- This website is not legal advice and does not create a lawyer-client relationship.
+- Do not publish confidential client information, unverified qualifications, or claims that have not been approved by the firm.
+- Remote photographs and Google Fonts require internet access.
